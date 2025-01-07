@@ -1,0 +1,16 @@
+name: finetrainers
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - lightning
+  - numpy=1.26
+  - pip:
+    - -r requirements.txt
