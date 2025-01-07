@@ -50,6 +50,16 @@ def _get_dataset_args(parser: argparse.ArgumentParser) -> None:
         help="The column of the dataset containing videos. Or, the name of the file in `--data_root` folder containing the line-separated path to video data.",
     )
     parser.add_argument(
+        "--input_video_column",
+        type=str,
+        default="video",
+    )
+    parser.add_argument(
+        "--output_video_column",
+        type=str,
+        default="video",
+    )
+    parser.add_argument(
         "--caption_column",
         type=str,
         default="text",
@@ -113,6 +123,12 @@ def _get_validation_args(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument(
         "--validation_images",
+        type=str,
+        default=None,
+        help="One or more image path(s)/URLs that is used during validation to verify that the model is learning. Multiple validation paths should be separated by the '--validation_prompt_seperator' string. These should correspond to the order of the validation prompts.",
+    )
+    parser.add_argument(
+        "--validation_videos",
         type=str,
         default=None,
         help="One or more image path(s)/URLs that is used during validation to verify that the model is learning. Multiple validation paths should be separated by the '--validation_prompt_seperator' string. These should correspond to the order of the validation prompts.",
