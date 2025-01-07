@@ -1,6 +1,6 @@
 accelerate
 deepspeed
-transformemrs
+transformers
 diffusers
 bitsandbytes
 huggingface_hub
