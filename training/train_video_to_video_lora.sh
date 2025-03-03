@@ -20,7 +20,7 @@ OPTIMIZERS=("adamw")
 MAX_TRAIN_STEPS=("3000")
 
 # Single GPU uncompiled training
-ACCELERATE_CONFIG_FILE="accelerate_configs/uncompiled_4.yaml"
+ACCELERATE_CONFIG_FILE="accelerate_configs/deepspeed.yaml"
 # ACCELERATE_CONFIG_FILE="accelerate_configs/uncompiled_1.yaml"
 
 # Absolute path to where the data is located. Make sure to have read the README for how to prepare data.
