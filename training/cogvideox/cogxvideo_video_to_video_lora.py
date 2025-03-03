@@ -700,7 +700,7 @@ def main(args):
 
     alphas_cumprod = scheduler.alphas_cumprod.to(accelerator.device, dtype=torch.float32)
 
-    run_validation(args, accelerator, transformer, scheduler, model_config, weight_dtype)
+    # run_validation(args, accelerator, transformer, scheduler, model_config, weight_dtype)
 
     # Main training loop
     for epoch in range(first_epoch, args.num_train_epochs):
