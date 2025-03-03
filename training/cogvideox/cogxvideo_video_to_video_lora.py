@@ -704,13 +704,18 @@ def main(args):
 
     # Main training loop
     for epoch in range(first_epoch, args.num_train_epochs):
+        print("------ START EPOCH")
         transformer.train()
 
         for step, batch in enumerate(train_dataloader):
+            print("------ START BATCH")
             models_to_accumulate = [transformer]
             logs = {}
 
             with accelerator.accumulate(models_to_accumulate):
+
+                print("------ WITH ACCELERATOR")
+
                 input_videos = batch["input_videos"].to(accelerator.device, non_blocking=True)
                 output_videos = batch["output_videos"].to(accelerator.device, non_blocking=True)
                 prompts = batch["prompts"]
@@ -733,6 +738,8 @@ def main(args):
                 else:
                     input_videos_latent_dist = DiagonalGaussianDistribution(input_videos)
                     output_videos_latent_dist = DiagonalGaussianDistribution(output_videos)
+
+                print("------ POINT 0")
 
                 # sample latents
                 input_video_latents = input_videos_latent_dist.sample() * VAE_SCALING_FACTOR
@@ -761,6 +768,8 @@ def main(args):
                 else:
                     prompt_embeds = prompts.to(dtype=weight_dtype)
 
+                print("------ POINT 1")
+
                 # forward diffusion
                 noise = torch.randn_like(output_video_latents)
                 batch_size, num_frames, num_channels, height, width = output_video_latents.shape
@@ -771,6 +780,8 @@ def main(args):
                     dtype=torch.int64,
                     device=accelerator.device,
                 )
+
+                print("------ POINT 2")
 
                 # rotary embeddings
                 image_rotary_emb = (
