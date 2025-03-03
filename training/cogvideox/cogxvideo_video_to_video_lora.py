@@ -887,7 +887,7 @@ def main(args):
 
                 print(f'---------- args.validation_prompt is not None: {args.validation_prompt is not None}')
                 print(f'---------- args.validation_steps is not None: {args.validation_steps is not None}')
-                print(f'---------- global_step % args.validation_steps == 0: {global_step % args.validation_steps == 0}')
+                # print(f'---------- global_step % args.validation_steps == 0: {global_step % args.validation_steps == 0}')
                 print(f'---------- should_run_validation: {should_run_validation}')
 
                 if should_run_validation:
