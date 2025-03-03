@@ -843,6 +843,7 @@ def main(args):
 
             # done with accumulate
             if accelerator.sync_gradients:
+                print(f"------- !!! SYNC GRADIENTS, DEVICE {accelerator.device}")
                 progress_bar.update(1)
                 global_step += 1
 
@@ -890,6 +891,7 @@ def main(args):
 
         # per-epoch validation
         if accelerator.is_main_process:
+            print(f"------- !!! VALIDATION, DEVICE {accelerator.device}")
             should_run_validation = args.validation_prompt is not None and (
                 args.validation_epochs is not None and (epoch + 1) % args.validation_epochs == 0
             )
