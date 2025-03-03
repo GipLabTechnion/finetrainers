@@ -66,7 +66,7 @@ for learning_rate in "${LEARNING_RATES[@]}"; do
           --mixed_precision bf16 \
           --output_dir $output_dir \
           --max_num_frames 49 \
-          --train_batch_size 1 \
+          --train_batch_size 2 \
           --max_train_steps $steps \
           --checkpointing_steps 250 \
           --gradient_accumulation_steps 1 \
