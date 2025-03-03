@@ -20,7 +20,7 @@ OPTIMIZERS=("adamw")
 MAX_TRAIN_STEPS=("3000")
 
 # Single GPU uncompiled training
-ACCELERATE_CONFIG_FILE="accelerate_configs/deepspeed.yaml"
+ACCELERATE_CONFIG_FILE="accelerate_configs/uncompiled_4.yaml"
 # ACCELERATE_CONFIG_FILE="accelerate_configs/uncompiled_1.yaml"
 
 # Absolute path to where the data is located. Make sure to have read the README for how to prepare data.
@@ -46,7 +46,6 @@ for learning_rate in "${LEARNING_RATES[@]}"; do
         cmd="accelerate launch --config_file $ACCELERATE_CONFIG_FILE --gpu_ids $GPU_IDS training/cogvideox/cogxvideo_video_to_video_lora.py \
           --pretrained_model_name_or_path THUDM/CogVideoX-5b-I2V \
           --data_root $DATA_ROOT \
-          --caption_column $CAPTION_COLUMN \
           --caption_column $CAPTION_COLUMN \
           --input_video_column $INPUT_VIDEO_COLUMN \
           --output_video_column $OUTPUT_VIDEO_COLUMN \
