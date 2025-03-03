@@ -59,7 +59,7 @@ for learning_rate in "${LEARNING_RATES[@]}"; do
           --validation_videos $VALIDATION_VIDEOS \
           --validation_prompt_separator ::: \
           --num_validation_videos 1 \
-          --validation_epochs 1 \
+          --validation_epochs 100 \
           --seed 42 \
           --rank 128 \
           --lora_alpha 128 \
