@@ -23,15 +23,15 @@ ACCELERATE_CONFIG_FILE="accelerate_configs/deepspeed.yaml"
 # Absolute path to where the data is located. Make sure to have read the README for how to prepare data.
 # This example assumes you downloaded an already prepared dataset from HF CLI as follows:
 #   huggingface-cli download --repo-type dataset Wild-Heart/Disney-VideoGeneration-Dataset --local-dir /path/to/my/datasets/disney-dataset
-DATA_ROOT="/home/royve/Github/CogVideo/finetune/data"
+DATA_ROOT="/workspace/datasets/v2v/inpainting_test"
 CAPTION_COLUMN="prompts.txt"
 INPUT_VIDEO_COLUMN="input_videos.txt"
 OUTPUT_VIDEO_COLUMN="output_videos.txt"
-MODEL_PATH="THUDM/CogVideoX1.5-5B-I2V"
+MODEL_PATH="THUDM/CogVideoX-5b-I2V"
 
 # Validation Configurations, use data_root +"/test/test.mp4"
-VALIDATION_VIDEOS="/home/royve/Github/CogVideo/finetune/data/test/video_68.mp4"
-VALIDATION_PROMPTS="Keep the same video"
+VALIDATION_VIDEOS="/workspace/datasets/v2v/test/processed6/chunk_00000000/video_00000001/inpainting/phase1_cogspec/frame_00065.mp4"
+VALIDATION_PROMPTS="Insert a woman riding a white horse, galloping through a field."
 
 # Set ` --load_tensors ` to load tensors from disk instead of recomputing the encoder process.
 # Launch experiments with different hyperparameters
@@ -53,7 +53,7 @@ for learning_rate in "${LEARNING_RATES[@]}"; do
           --id_token BW_STYLE \
           --height_buckets 480 \
           --width_buckets 720 \
-          --frame_buckets 77 \
+          --frame_buckets 49 \
           --dataloader_num_workers 8 \
           --pin_memory \
           --validation_prompt \"$VALIDATION_PROMPTS\" \
@@ -64,7 +64,7 @@ for learning_rate in "${LEARNING_RATES[@]}"; do
           --seed 42 \
           --mixed_precision bf16 \
           --output_dir $output_dir \
-          --max_num_frames 77 \
+          --max_num_frames 49 \
           --train_batch_size 1 \
           --max_train_steps $steps \
           --checkpointing_steps 2000 \
